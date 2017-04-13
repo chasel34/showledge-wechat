@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.wxml": "html",
+        "*.wxss": "css"
+    }
+,
+"editor.tabSize": 2,
+"editor.wrappingColumn": 0,
+"editor.wrappingIndent": "indent"
+}

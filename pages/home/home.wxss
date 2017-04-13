@@ -1,0 +1,8 @@
+.home-page .top-nav{
+  position: fixed;
+  top: 0;
+}
+
+.home-page .content-wrapper{
+  margin: 50rpx 0;
+}

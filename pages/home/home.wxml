@@ -1,0 +1,22 @@
+<view class="home-page">
+    <!--顶部导航-->
+    <view class="top-nav">i am top nav</view>
+
+    
+    <view class="content-wrapper">
+        <!--轮播图-->
+        <swiper autoplay="true" interval="2000" duration="1000" circular="true" indicator-dots="true">
+          <block wx:for="{{imgUrls}}">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" style="width: 100%;height: 100%" />
+            </swiper-item>
+          </block>
+        </swiper>
+
+
+        <!--文章列表-->
+        <view class="article-list">
+            i am article-list
+        </view>
+    </view>
+</view>
