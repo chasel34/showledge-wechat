@@ -1,3 +1,7 @@
+.home-page{
+  color: grey;
+}
+
 .home-page .top-nav{
   position: fixed;
   top: 0;
@@ -5,4 +9,65 @@
 
 .home-page .content-wrapper{
   margin: 50rpx 0;
+}
+
+.home-page .article-item{
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 10rpx 0 10rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid rgba(7,17,27,0.2);
+  color: rgb(255,255,255);
+}
+
+.home-page .author{
+  color: black;
+}
+
+.home-page .avatar{
+  vertical-align: top;
+  width: 45rpx;
+  height: 45rpx;
+  border-radius: 50%;
+}
+
+.home-page .name{
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}
+
+.home-page .title{
+  /*text-align: center;*/
+  color: black
+}
+
+.home-page .abstrat-content{
+  margin-top: 10rpx;
+}
+
+.home-page .abstrat{
+  height: 90rpx;
+  margin-top: 6rpx;
+  font-size: 26rpx;
+  color: rgba(0,0,0,0.8);
+  overflow: hidden;
+  /*text-overflow: ellipsis;*/
+}
+
+.home-page .meta-icon{
+  vertical-align: middle;
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.home-page .meta-count{
+  margin: 0 10rpx;
+  font-size: 26rpx;
+  color: rgba(0,0,0,0.6);
+}
+
+.home-page .wrapImg{
+  flex: 0 0 300rpx;
+  width: 300rpx;
+  height: 240rpx;
 }
