@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/home/home",
-    "pages/index/index",
+    "pages/user/user",
     "pages/logs/logs"
   ],
   "window":{
@@ -21,7 +21,7 @@
       "selectedIconPath": "./common/icon/home.png"
     },
     {
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/user/user",
       "text": "个人",
       "iconPath": "./common/icon/user.png",
       "selectedIconPath": "./common/icon/user.png"

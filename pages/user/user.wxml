@@ -1,0 +1,4 @@
+<!--index.wxml-->
+<view class="user-page">
+  <view class="view-person-page"></view>
+</view>
