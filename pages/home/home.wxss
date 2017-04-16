@@ -5,10 +5,20 @@
 .home-page .top-nav{
   position: fixed;
   top: 0;
+  width: 100%;
+  height: 100rpx;
+  border: 1px solid rgba(7,17,27,0.2);
+  background: rgba(7,17,27,0.2);
+}
+
+.home-page .top-nav-search{
+  margin: 25rpx 20rpx;
+  border: 1px solid rgba(7,17,27,0.2);
+  background: rgba(7,17,27,0.1);
 }
 
 .home-page .content-wrapper{
-  margin: 50rpx 0;
+  margin: 110rpx 0;
 }
 
 .home-page .article-item{

@@ -1,10 +1,13 @@
 <view class="home-page">
-    <!--顶部导航-->
-    <view class="top-nav">i am top nav</view>
+  <!--顶部导航-->
+  <view class="top-nav">
+    <input class="top-nav-search" placeholder="输入关键词搜索"/>
+  </view>
 
     
-    <view class="content-wrapper">
-        <!--轮播图-->
+  <view class="content-wrapper">
+    <scroll-view scroll-y="true" bindscrolltolower="displayArticle" style="height: 700px;">
+      <!--轮播图-->
         <swiper autoplay="true" interval="2000" duration="1000" circular="true" indicator-dots="true">
           <block wx:for="{{swiperImg}}">
             <swiper-item>
@@ -16,7 +19,7 @@
 
         <!--文章列表-->
         <view class="article-list">
-            <block wx:for="{{article}}">
+            <block wx:for="{{articleDisplay}}">
               <view class="article-item">
                 <view class="content">
                   <view class="author">
@@ -39,5 +42,6 @@
               </view>
             </block>
         </view>
-    </view>
+    </scroll-view>
+  </view>
 </view>
