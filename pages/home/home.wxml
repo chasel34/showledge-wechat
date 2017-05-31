@@ -1,47 +1,50 @@
 <view class="home-page">
   <!--顶部导航-->
-  <view class="top-nav">
-    <input class="top-nav-search" placeholder="输入关键词搜索"/>
-  </view>
+  <!--<view class="top-nav">
+    <input class="top-nav-search" placeholder="输入关键词搜索" />
+  </view>-->
 
-    
+
   <view class="content-wrapper">
     <scroll-view scroll-y="true" bindscrolltolower="displayArticle" style="height: 700px;">
       <!--轮播图-->
-        <swiper autoplay="true" interval="2000" duration="1000" circular="true" indicator-dots="true">
-          <block wx:for="{{swiperImg}}">
-            <swiper-item>
-              <image src="{{item}}" class="slide-image" style="width: 100%;height: 100%" />
-            </swiper-item>
-          </block>
-        </swiper>
+      <swiper autoplay="true" interval="2000" duration="1000" circular="true" indicator-dots="true">
+        <block wx:for="{{swiperImg}}">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" style="width: 100%;height: 100%" />
+          </swiper-item>
+        </block>
+      </swiper>
 
 
-        <!--文章列表-->
-        <view class="article-list">
-            <block wx:for="{{articleDisplay}}">
-              <view class="article-item">
-                <view class="content">
-                  <view class="author">
-                    <image class="avatar" src="{{item.avatar}}" mode="aspectFit" />
-                    <text class="name">{{item.author}}</text>
-                  </view>
-                  <view class="abstrat-content">
-                    <view class="title">{{item.title}}</view>
-                    <view class="abstrat">{{item.abstrat}}</view>
-                  </view>
-                  <view class="meta">
-                    <image class="meta-icon" src="../../common/icon/watch.png" mode="aspectFit"></image>
-                    <text class="meta-count">{{item.watchNum}}</text>
-                    <image class="meta-icon" src="../../common/icon/like.png" mode="aspectFit"></image>
-                    <text class="meta-count">{{item.likeNum}}</text><image class="meta-icon" src="../../common/icon/comment.png" mode="aspectFit"></image>
-                    <text class="meta-count">{{item.commentNum}}</text>
-                  </view>
+      <!--文章列表-->
+      <view class="article-list">
+        <block wx:for="{{articleDisplay}}">
+          <navigator url="{{'/pages/article/article'+item.id}}" open-type="navigate">
+            <view class="article-item">
+              <view class="content">
+                <view class="author">
+                  <image class="avatar" src="{{item.avatar}}" mode="aspectFit" />
+                  <text class="name">{{item.author}}</text>
                 </view>
-                <image class="wrapImg" src="{{item.wrapImg}}" mode="aspectFit"/>
+                <view class="abstrat-content">
+                  <view class="title">{{item.title}}</view>
+                  <view class="abstrat">{{item.abstrat}}</view>
+                </view>
+                <view class="meta">
+                  <image class="meta-icon" src="../../common/icon/watch.png" mode="aspectFit"></image>
+                  <text class="meta-count">{{item.watchNum}}</text>
+                  <image class="meta-icon" src="../../common/icon/like.png" mode="aspectFit"></image>
+                  <text class="meta-count">{{item.likeNum}}</text>
+                  <image class="meta-icon" src="../../common/icon/comment.png" mode="aspectFit"></image>
+                  <text class="meta-count">{{item.commentNum}}</text>
+                </view>
               </view>
-            </block>
-        </view>
+              <image class="wrapImg" src="{{item.wrapImg}}" mode="aspectFit" />
+            </view>
+          </navigator>
+        </block>
+      </view>
     </scroll-view>
   </view>
 </view>

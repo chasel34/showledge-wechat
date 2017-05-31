@@ -5,6 +5,6 @@
     }
 ,
 "editor.tabSize": 2,
-"editor.wrappingColumn": 0,
-"editor.wrappingIndent": "indent"
+"editor.wrappingIndent": "indent",
+"editor.wordWrap": "on"
 }

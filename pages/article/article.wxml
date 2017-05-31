@@ -1,6 +1,9 @@
 <view class="article-page">
+  <view class="author">
+    <image class="avatar"></image>
+    <text class="author"></text>
+  </view>
   <view class="title"></view>
-  <view class="autor"></view>
   <view class="article-content"></view>
   <view class="article-meta"></view>
 </view>
