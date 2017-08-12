@@ -2,30 +2,45 @@
   "pages":[
     "pages/home/home",
     "pages/user/user",
-    "pages/logs/logs",
-    "pages/article/article"
+    "pages/discover/discover",
+    "pages/messages/messages",
+    "pages/message-detail/message-detail",
+    "pages/article/article",
+    "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#00cc66",
+    "navigationBarTitleText": "showledge-wechat",
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "color": "#000000",
-    "selectedColor": "#000",
+    "selectedColor": "#00cc66",
     "backgroundColor": "#fff",
     "list": [{
       "pagePath": "pages/home/home",
       "text": "首页",
-      "iconPath": "./common/icon/home.png",
-      "selectedIconPath": "./common/icon/home.png"
+      "iconPath": "./common/tabbar/home.png",
+      "selectedIconPath": "./common/tabbar/home.png"
+    },
+    {
+      "pagePath": "pages/discover/discover",
+      "text": "发现",
+      "iconPath": "./common/tabbar/发现.png",
+      "selectedIconPath": "./common/tabbar/发现.png"
+    },
+    {
+      "pagePath": "pages/messages/messages",
+      "text": "信息",
+      "iconPath": "./common/tabbar/消息.png",
+      "selectedIconPath": "./common/tabbar/消息.png"
     },
     {
       "pagePath": "pages/user/user",
       "text": "个人",
-      "iconPath": "./common/icon/user.png",
-      "selectedIconPath": "./common/icon/user.png"
+      "iconPath": "./common/tabbar/user2.png",
+      "selectedIconPath": "./common/tabbar/user2.png"
     }]
   }
 }

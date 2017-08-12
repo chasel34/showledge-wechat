@@ -1,0 +1,42 @@
+page{
+  height: 100%;
+  background-image: url('../../common/image/login-background.jpg');
+
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header{
+  font-size: 20pt;
+  font-weight: bold;
+  color: #00cc66;
+}
+
+ .container > form{
+   width: 100%;
+ } 
+
+.login-input{
+  margin-top: 20rpx; 
+  width: 80%;
+  margin: auto;
+}
+
+.login-input > input{
+  margin-bottom: 20rpx;
+  padding:20rpx 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.login-input > button{
+  background-color: #00cc66; 
+  color: white;
+}

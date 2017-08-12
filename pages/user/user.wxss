@@ -1,3 +1,204 @@
-.user-page{
-  background: #f8f8f8;
+@import "../../common/lib/weui.wxss";
+@import "../home/home.wxss";
+
+page{
+  font-family: "Microsoft Yahei",微软雅黑,"Helvetica Neue",Arial,sans-serif;
+  height: 100%;
 }
+
+
+/* .user-container{
+  
+} */
+
+/* 头部 */
+
+.user-profile{
+  padding: 0 9pt;
+  border-bottom: 8px solid #e6ecf0;
+}
+
+.user-header{
+  display: flex;
+   align-items: center; 
+  margin-top: 6px;
+}
+
+.user-header > image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+
+.user-name{
+  display: block;
+  margin-left: 8px;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+/* 用户详细信息  */
+.user-detail{
+  display: flex;
+  /* padding: 0 9pt; */
+  /* margin: 8px 0; */
+}
+
+.user-detail > view{
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.user-detail  image{
+  width: 11pt;
+  height: 11pt;
+}
+
+.user-detail text{
+  margin-left: 6px;
+  font-size: 10pt;
+  color: #969696;
+} 
+
+.user-description{
+    display: -webkit-box;
+    line-height: 40rpx;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 8px 0;
+    padding-left: 4px;
+    font-size: 10pt;
+}
+
+/* following  */
+/* .follow-list{
+  padding: 0 9pt;
+} */
+
+.follow-list:first-child{
+  border-top: 1px solid #e6ecf0;
+}
+
+.follow{
+  /* display: flex;
+  justify-content: space-between; */
+  position: relative;
+  margin-top: 6px;
+  border-bottom: 8px solid #e6ecf0;
+  padding: 0 9pt 4pt 9pt; 
+}
+
+.follow:last-child{
+  border-bottom: none;
+}
+
+.follow-user-detail{
+  display: flex;
+  align-items: center;
+  /* padding: 0 9pt; */
+}
+
+.follow-user-detail > image{
+  width: 25pt;
+  height: 25pt;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+}
+
+.follow-user-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.follow-user-content > .description{
+  font-size: 11pt;
+  color: #969696;
+  font-weight: normal;
+}
+
+.follow > text{
+  position: absolute;
+  right: 9pt;
+  top: 28%;
+  padding: 0 4px;
+  border: 1px solid #00cc66;
+  border-radius: 4px;
+  font-size: 11pt;
+}
+
+.followButtonStyle1{
+  color: #00cc66;
+}
+
+.followButtonStyle2{
+  background-color: #42c02e;
+  color: white;
+}
+
+
+
+/*tab bar*/
+.withAnimate {
+  transition: all 200ms ease-out;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -ms-perspective: 1000;
+  perspective: 1000;
+}
+.tab-bar {
+  position: relative;
+  white-space: nowrap;
+  display: block;
+  font-size: 15px;
+  color: #666666;
+  height:42px;
+}
+.tab-bar .tab {
+  display: inline-block;
+  /* padding-top:8px;
+  padding-bottom:7px; */
+  padding: 8px 4px 7px 0;
+  text-align: center;
+}
+.tab-bar .tab-active {
+  color: #00cc66;
+}
+.tab-bar .under-line {
+  position: absolute;
+  height: 3px;
+  background-color: #00cc66;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  height: 60rpx;
+}
+/*tab bar end*/
+
+/*swiper*/
+.page-section-spacing {
+  padding: 0;
+}
+.swiper{
+   height: calc(100vh - 42px); 
+}
+.swiper-item{
+  display: block;
+  height: calc(100vh - 42px); 
+}
+/*swiper end*/

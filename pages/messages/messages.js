@@ -1,23 +1,9 @@
 Page({
   data: {
-    followButtonText: ['已关注','已关注','已关注','已关注'], //关注按钮文字
-    followButtonStyle: ['followButtonStyle2','followButtonStyle2','followButtonStyle2','followButtonStyle2'], //关注按钮样式
-
-    followerButtonText: ['+ 关注','+ 关注','+ 关注','+ 关注'], //关注按钮文字
-    followerButtonStyle: ['followButtonStyle1','followButtonStyle1','followButtonStyle1','followButtonStyle1'], //关注按钮样式
-
-
-
-    // 页面配置
-    userScroll: false,
-    showLastTab: false,
-
-
-
     window_width: 375,// 单位是px
     tab_config: {
-      tabs: [{name: '学习动态', counts: 34}, {name: '学习笔记', counts: 4},{name: '知识地图', counts: 10}, {name: '学习榜样', counts: 134},{name: '关注者', counts: 4}, {name: '收藏库', counts: 334}],// tabs
-      fixed: false, // tabbar是否固定宽度
+      tabs: ['私信', '通知'],// tabs
+      fixed: true, // tabbar是否固定宽度
       active_tab: 0, //当前激活的tab
       item_width: 90,// 单位是px
       tab_left: 0, // 如果tabbar不是固定宽度，则目前左移的位置
@@ -26,7 +12,7 @@ Page({
       }
     },
     swipe_config: {
-      swipes: ['demo-text-1', 'demo-text-2'],// 不同面板的内容
+      swipes: ['私信', '通知'],// 不同面板的内容
       indicator_dots: false, // 不显示小圆点
       autoplay: false,// 自动切换
       interval: 2000,// 自动切换频率
@@ -51,19 +37,13 @@ Page({
     } catch (e) {
 
     }
-
-    if(this.data.window_width > 350) {
-      this.setData({
-        showLastTab: true
-      })
-    }
   },
   // 更换页面到指定page ，从0开始
   updateSelectedPage(page) {
     let that = this;
     // console.log("====_updateSelectedPage");
     let {window_width, tab_config, swipe_config } = this.data;
-    let underline_offset = (tab_config.item_width + 4) * page;
+    let underline_offset = tab_config.item_width * page;
 
     tab_config.active_tab = page;
     swipe_config.current = page;
@@ -94,59 +74,5 @@ Page({
   },
   onScroll(e) {
     let that = this;
-  },
-
-  pageScrollToLower: function() {
-    this.setData({
-      userScroll: true
-    })
-  },
-
-  swiperTapScrollToTop: function() {
-    this.setData({
-      userScroll: false
-    })
-  },
-
-  followButtonTap: function(e) {
-    console.log(e)
-    count = e.currentTarget.dataset.count
-    console.log(this.data.followButtonText[count])
-
-    let param = {}
-    let string1 = 'followButtonText[' + count + ']'
-    let string2 = 'followButtonStyle[' + count + ']'
-
-    if(this.data.followButtonText[count] === '已关注') {
-      param[string1] = '+ 关注'
-      param[string2] = 'followButtonStyle1'
-      this.setData(param)
-    }
-    else {
-      param[string1] = '已关注'
-      param[string2] = 'followButtonStyle2'
-      this.setData(param)
-    }
-  },
-
-   followerButtonTap: function(e) {
-    console.log(e)
-    count = e.currentTarget.dataset.count
-    console.log(this.data.followButtonText[count])
-
-    let param = {}
-    let string1 = 'followerButtonText[' + count + ']'
-    let string2 = 'followerButtonStyle[' + count + ']'
-
-    if(this.data.followerButtonText[count] === '已关注') {
-      param[string1] = '+ 关注'
-      param[string2] = 'followButtonStyle1'
-      this.setData(param)
-    }
-    else {
-      param[string1] = '已关注'
-      param[string2] = 'followButtonStyle2'
-      this.setData(param)
-    }
   }
 })

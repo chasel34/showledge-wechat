@@ -1,0 +1,92 @@
+page{
+  height: 100%;
+}
+
+.container{
+  box-sizing: border-box;
+  border-top: 1px solid #e6ecf0;
+  padding: 0 9pt 10% 9pt;
+}
+
+.time{
+  margin: 8px 0;
+  text-align: center;
+  font-size: 10pt;
+  color: #969696;
+}
+
+.letter{
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.answer{
+  flex-direction: row-reverse;
+}
+
+.letter > image{
+  margin: 0 5px;
+  width: 30pt;
+  height: 30pt;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+}
+
+.letter > view{
+  box-sizing: border-box;
+  max-width: 75%;
+  padding: 30rpx 30rpx;
+  border-radius: 10px;
+  background-color: #e6ecf0; 
+}
+
+
+/* 回复输入框  */
+
+.answer-input{
+  position: fixed;
+  bottom: 0;
+  height: 8%;
+  width: 100%;
+  border-top: 1px solid #e6ecf0;
+  background-color: white;
+  z-index: 100;
+}
+
+
+/* .answer-input input{
+  display: inline-block;
+}
+
+.answer-input button{
+  position: absolute;
+  right: 0;
+} */
+
+.answer-input > form{
+  display: block;
+  height:100%;
+  width: 100%;
+}
+
+.answer-input view{
+  display: flex;
+  height: 100%;
+  width: 95%;
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.common-input input{
+  width: 75%;
+}
+
+/* 手机显示button不能正常显示 通过修改button所占父元素宽度正常显示，修改方式有待改进*/
+.answer-input button{
+  display: inline-block;
+  width: 25%;
+  margin: 0;  
+  background-color: #00cc66;
+  color: white;
+}

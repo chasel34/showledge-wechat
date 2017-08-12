@@ -1,30 +1,30 @@
 //app.js
 App({
-  onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+
+
+  // 公共数据
+  globalData: {
+    username: 'chasel'
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
+
+  // 公共方法
+  redirectTologinPage: function (that) {
+    console.log(that.data.username)
+    if (that.data.username === null) {
+      wx.redirectTo({
+        url: '../login/login',
+        success: function (res) {
+          // success
+          console.log('success')
+        },
+        fail: function () {
+          // fail
+          console.log('fail')
+        },
+        complete: function () {
+          // complete
         }
       })
     }
-  },
-  globalData:{
-    userInfo:null
   }
 })

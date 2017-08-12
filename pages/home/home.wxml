@@ -1,50 +1,718 @@
-<view class="home-page">
-  <!--顶部导航-->
-  <!--<view class="top-nav">
-    <input class="top-nav-search" placeholder="输入关键词搜索" />
-  </view>-->
-
-
-  <view class="content-wrapper">
-    <scroll-view scroll-y="true" bindscrolltolower="displayArticle" style="height: 700px;">
-      <!--轮播图-->
-      <swiper autoplay="true" interval="2000" duration="1000" circular="true" indicator-dots="true">
-        <block wx:for="{{swiperImg}}">
-          <swiper-item>
-            <image src="{{item}}" class="slide-image" style="width: 100%;height: 100%" />
-          </swiper-item>
-        </block>
-      </swiper>
-
-
-      <!--文章列表-->
-      <view class="article-list">
-        <block wx:for="{{articleDisplay}}">
-          <navigator url="{{'/pages/article/article'+item.id}}" open-type="navigate">
-            <view class="article-item">
-              <view class="content">
-                <view class="author">
-                  <image class="avatar" src="{{item.avatar}}" mode="aspectFit" />
-                  <text class="name">{{item.author}}</text>
+<view class="container">
+  <view class="page-body">
+    <!-- tabs -->
+    <view wx:if="{{tab_config.fixed}}" class="tab-bar">
+      <view wx:for="{{tab_config.tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{tab_config.active_tab==index?'tab-active':''}} "
+        style="width: {{tab_config.item_width}}px;">
+        <text>{{item}}</text>
+      </view>
+      <view style="width: {{tab_config.item_width}}px; left: {{tab_config.underline.offset}}px;" class="under-line withAnimate"></view>
+    </view>
+    <scroll-view wx:else class="tab-bar" scroll-x="true" bindscroll="onScroll" style="width: 100%;" scroll-left="{{tab_config.tab_left}}">
+      <view wx:for="{{tab_config.tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{tab_config.active_tab==index?'tab-active':''}} "
+        style="width: {{tab_config.item_width}}px;">
+        <text>{{item}}</text>
+      </view>
+      <view style="width: {{tab_config.item_width}}px; left: {{tab_config.underline.offset}}px;" class="under-line withAnimate"></view>
+    </scroll-view>
+    <!-- tabs end -->
+    <!-- tab panel -->
+    <view class="page-section page-section-spacing swiper-wrap">
+      <swiper class="swiper" indicator-dots="{{swipe_config.indicator_dots}}" autoplay="{{swipe_config.autoplay}}" interval="{{swipe_config.interval}}"
+        duration="{{swipe_config.duration}}" current="{{swipe_config.current}}" bindchange="swiperChange">
+        <swiper-item style="height:500rpx;">
+          <scroll-view scroll-y="{{true}}" style="height: 100%">
+            <view class="swiper-item {{item}}">
+              <view class="container">
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
                 </view>
-                <view class="abstrat-content">
-                  <view class="title">{{item.title}}</view>
-                  <view class="abstrat">{{item.abstrat}}</view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
                 </view>
-                <view class="meta">
-                  <image class="meta-icon" src="../../common/icon/watch.png" mode="aspectFit"></image>
-                  <text class="meta-count">{{item.watchNum}}</text>
-                  <image class="meta-icon" src="../../common/icon/like.png" mode="aspectFit"></image>
-                  <text class="meta-count">{{item.likeNum}}</text>
-                  <image class="meta-icon" src="../../common/icon/comment.png" mode="aspectFit"></image>
-                  <text class="meta-count">{{item.commentNum}}</text>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="mode-content">
+                    <text class="mode">心情</text>
+                    <text>激动人心的</text>
+                  </view>
+                  <text class="user-act">今天看了《python学习手册》第一章，学会了python的基本语法。原来python这门语言的语法真心不难，非常适合编程新手入门。强烈建议高校把第一门编程语言改成python。c语言从某种意义上来说对新手不太友好(比如指针(─.─|||))</text>
+                  <view class="user-library">
+                    <view class="user-library-content">
+                      <text>学习资料</text>
+                      <view>
+                        <text>《python学习手册》</text>
+                        <text>慕课网python教程</text>
+                      </view>
+                    </view>
+                    <view class="user-library-content">
+                      <text>学习笔记</text>
+                      <view>
+                        <navigator url="../article/article">我的python笔记</navigator>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
                 </view>
               </view>
-              <image class="wrapImg" src="{{item.wrapImg}}" mode="aspectFit" />
             </view>
-          </navigator>
-        </block>
-      </view>
-    </scroll-view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item style="height:500rpx;">
+          <view class="swiper-item {{item}}">
+            <scroll-view scroll-y="{{true}}" style="height: 100%">
+              <view class="note-list">
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar3.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">这是一个标题</view>
+                  <navigator url="../article/article">
+                    <text class="user-act"> 这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。
+                      当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+                      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+                      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+                    </text>
+                  </navigator>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+        <swiper-item style="height:500rpx;">
+          <view class="swiper-item {{item}}">
+            <scroll-view scroll-y="{{true}}" style="height: 100%">
+              <view class="mind-mapping-list">
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view>
+                <view class="content">
+                  <view class="header">
+                    <view class="avatar">
+                      <image style="width: 100%; height: 100%" src="../../common/image/user-avatar1.jpg" />
+                    </view>
+                    <text class="author">张三</text>
+                    <text class="date">-2017.7.5 20:03:04</text>
+                  </view>
+                  <view class="title">前端知识体系</view>
+                  <view class="map-keyword">
+                    <image src="../../common/icon/tab.png" />
+                    <text>关键词</text>
+                    <text class="tab">前端</text>
+                    <text class="tab">html</text>
+                    <text class="tab">css</text>
+                    <text class="tab" wx:if="{{showLastTab}}">javascript</text>..
+                  </view>
+                  <view class="act-info">
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/comment.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/like.png" />
+                    </view>
+                    <text class="detail">233</text>
+                    <view class="icon">
+                      <image style="width:100%; height: 100%" src="../../common/icon/reprinted.png" />
+                    </view>
+                    <text class="detail">233</text>
+                  </view>
+                </view> 
+              </view>
+            </scroll-view>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <!-- tab panel end -->
   </view>
 </view>

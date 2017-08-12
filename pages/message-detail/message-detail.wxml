@@ -1,0 +1,41 @@
+<scroll-view class="container" scroll-y="{{true}}" scroll-into-view="last-child" style="height: 100%">
+  <view class="private-letter-container">
+    <view class="time">2017.7.12 8:34</view>
+    <view class="letter">
+      <image src="../../common/image/user-avatar2.jpg" />
+      <view class="letter-content">你好，我是奥利奥，很高兴认识你</view>
+    </view>
+  </view>
+  <view class="private-letter-container">
+    <view class="time">2017.7.12 8:34</view>
+    <view class="letter answer">
+      <image src="../../common/image/user-avatar3.jpg" />
+      <view class="letter-content">你好，我也很高兴认识你</view>
+    </view>
+  </view>
+  <view class="private-letter-container">
+    <view class="time">2017.7.12 8:34</view>
+    <view class="letter">
+      <image src="../../common/image/user-avatar2.jpg" />
+      <view class="letter-content">你说的都对，但是我就是不认同你的说法!比如说，我们的业务之一是“二元期权交易”，所谓的二元期权，就是指判断商品未来价格的走势，并据此来获利。如果有人抛出硬币，让你对抛出的结果进行判断，你会觉得这是赌博，因为硬币的正反完全随机。但如果换一种形式，让人们对于黄金、白银、沥青等等期货价格未来的走向作出判断，并以此来下注，人们会产生一种幻觉，以为他们在做期货。对于公司来说，这种生意稳赚不赔，因为每一笔客户的“投资”，无论输赢，公司都会抽成。如果遇上客户手机好，一直赢的话，公司还可以用各种各样的手段作弊。总之，只要能一直骗取客户加入赌局，公司就可以一直赚钱。</view>
+    </view>
+  </view>
+
+  <view id="last-child" class="private-letter-container">
+    <view class="time">2017.7.12 8:34</view>
+    <view class="letter answer">
+      <image src="../../common/image/user-avatar3.jpg" />
+      <view class="letter-content">好吧，你说的也有一定的道理，我会认真考虑的</view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<view class="answer-input">
+  <form>
+    <view>
+      <input placeholder="请输入回复内容" confirm-type="send" focus="{{false}}" />
+      <button size="mini">发送</button>
+    </view>
+  </form>
+</view>

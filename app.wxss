@@ -1,2 +1,2 @@
 /**app.wxss**/
-
+@import "./common/lib/weui.wxss";

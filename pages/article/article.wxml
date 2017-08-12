@@ -1,9 +1,84 @@
-<view class="article-page">
-  <view class="author">
-    <image class="avatar"></image>
-    <text class="author"></text>
+<scroll-view id="scrollView" scroll-y="{{true}}" style="height : 92%" scroll-into-view="{{scrollIntoView}}" bindtap="displayCommentInput">
+  <view class="article-container">
+    <text class="title">这是一个标题</text>
+    <view class="detail">
+      <image class="avatar" src="../../common/image/user-avatar3.jpg" />
+      <view class="detail-content">
+        <view class="author">
+          <text>巧克力蛋糕</text>
+          <view class="follow-button" hover-class="{{button-hover}}">+ 关注</view>
+        </view>
+        <text class="time">2017.7.15 22: 24:55</text>
+      </view>
+    </view>
+    <view class="sort">
+      <image src="../../common/icon/tab.png" />
+      <view class="sort-item">后端</view>
+      <view class="sort-item">python</view>
+    </view>
+    <view class="article-content">
+      这是我的第一篇python笔记。主要记录python的常用语法以及容易坑人的地方。 Python是著名的“龟叔”Guido van Rossum在1989年圣诞节期间，为了打发无聊的圣诞节而编写的一个编程语言。 当你用一种语言开始作真正的软件开发时，你除了编写代码外，还需要很多基本的已经写好的现成的东西，来帮助你加快开发进度。比如说，要编写一个电子邮件客户端，如果先从最底层开始编写网络协议相关的代码，那估计一年半载也开发不出来。高级编程语言通常都会提供一个比较完善的基础代码库，让你能直接调用，比如，针对电子邮件协议的SMTP库，针对桌面环境的GUI库，在这些已有的代码库的基础上开发，一个电子邮件客户端几天就能开发出来。
+      Python就为我们提供了非常完善的基础代码库，覆盖了网络、文件、GUI、数据库、文本等大量内容，被形象地称作“内置电池（batteries included）”。用Python开发，许多功能不必从零编写，直接使用现成的即可。除了内置的库外，Python还有大量的第三方库，也就是别人开发的，供你直接使用的东西。当然，如果你开发的代码通过很好的封装，也可以作为第三方库给别人使用。许多大型网站就是用Python开发的，例如YouTube、Instagram，还有国内的豆瓣。很多大公司，包括Google、Yahoo等，甚至NASA（美国航空航天局）都大量地使用Python。
+      龟叔给Python的定位是“优雅”、“明确”、“简单”，所以Python程序看上去总是简单易懂，初学者学Python，不但入门容易，而且将来深入下去，可以编写那些非常非常复杂的程序。
+    </view>
+
+    <view id="comment-list" class="comment-list">
+      <view class="comment-header">2条评论</view>
+      <view class="comment-container">
+        <image class="avatar" src="../../common/image/user-avatar2.jpg" />
+        <view class="comment">
+          <text class="comment-author">感冒灵颗粒</text>
+          <text class="comment-content">
+            测试路过！！
+          </text>
+          <view class="comment-detail">
+            <image src="../../common/icon/thumb.png" />点赞
+            <image src="../../common/icon/comment1.png" />回复
+            <text>2017.7.15 16:15:21</text>
+          </view>
+        </view>
+      </view>
+      <view class="comment-container">
+        <image class="avatar" src="../../common/image/user-avatar3.jpg" />
+        <view class="comment">
+          <text class="comment-author">奥利奥</text>
+          <text class="comment-content">
+            测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+          </text>
+          <view class="comment-detail">
+            <image src="../../common/icon/thumb.png" />点赞
+            <image src="../../common/icon/comment1.png" />回复
+            <text>2017.7.15 16:15:21</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
   </view>
-  <view class="title"></view>
-  <view class="article-content"></view>
-  <view class="article-meta"></view>
+</scroll-view>
+
+
+
+<view class="footer">
+  <view class="like-icon">
+    <image src="../../common/icon/like.png" />
+  </view>
+  <view class="collected-icon">
+    <image src="../../common/icon/collected.png" />
+  </view>
+  <view id="commentInput" class="comment-icon" catchtap="displayCommentInput">
+    <image src="../../common/icon/comment.png" />
+  </view>
+  <view class="comment-count" catchtap="displayCommentList">
+    <text>评论 2</text>
+  </view>
+</view>
+
+<view class="comment-input" wx:if="{{showCommentInput}}">
+  <form>
+    <view>
+      <input placeholder="请输入评论内容" confirm-type="send" focus="{{focus}}" />
+      <button size="mini">发送</button>
+    </view>
+  </form>
 </view>

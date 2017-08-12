@@ -1,0 +1,117 @@
+<view class="page-body">
+  <!-- tabs -->
+  <view wx:if="{{tab_config.fixed}}" class="tab-bar">
+    <view wx:for="{{tab_config.tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{tab_config.active_tab==index?'tab-active':''}} "
+      style="width: {{tab_config.item_width}}px;">
+      <text>{{item}}</text>
+    </view>
+    <view style="width: {{tab_config.item_width}}px; left: {{tab_config.underline.offset}}px;" class="under-line withAnimate"></view>
+  </view>
+  <scroll-view wx:else class="tab-bar" scroll-x="true" bindscroll="onScroll" style="width: 100%;" scroll-left="{{tab_config.tab_left}}">
+    <view wx:for="{{tab_config.tabs}}" wx:key="unique" data-index="{{index}}" bindtap="handlerTabTap" class="tab {{tab_config.active_tab==index?'tab-active':''}} "
+      style="width: {{tab_config.item_width}}px;">
+      <text>{{item}}</text>
+    </view>
+    <view style="width: {{tab_config.item_width}}px; left: {{tab_config.underline.offset}}px;" class="under-line withAnimate"></view>
+  </scroll-view>
+  <!-- tabs end -->
+  <!-- tab panel -->
+  <view class="page-section page-section-spacing swiper-wrap">
+    <swiper class="swiper" indicator-dots="{{swipe_config.indicator_dots}}" autoplay="{{swipe_config.autoplay}}" interval="{{swipe_config.interval}}"
+      duration="{{swipe_config.duration}}" current="{{swipe_config.current}}" bindchange="swiperChange">
+      <swiper-item style="height:500rpx;">
+        <view class="swiper-item {{item}}">
+          <scroll-view scroll-y="{{true}}" style="height: 100%">
+            <view class="private-letter-container">
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <navigator url="../message-detail/message-detail" class="message-container">
+                <image src="../../common/image/user-avatar1.jpg" />
+                <view class="message-content">
+                  <view class="message-detail">
+                    <text>奥利奥</text>
+                    <text class="date">4天前</text>
+                  </view>
+                  <text>测试信息，测试信息，测试信息，测试信息</text>
+                </view>
+              </navigator>
+              <text class="bottom-text">没有更多内容了</text>
+            </view>
+          </scroll-view>
+        </view>
+      </swiper-item>
+      <swiper-item style="height:500rpx;">
+        <view class="swiper-item {{item}}">
+          <scroll-view scroll-y="{{true}}" style="height: 100%">
+            <view class="notice-list">
+              <view class="notice-container">
+                <view class="notice-content">
+                  <text class="navigator"> 奥利奥 </text>
+                  <text>赞了你的 </text>
+                  <text class="navigator">python知识笔记</text>
+                </view>
+                <view class="date">2017.7.15 8:21</view>
+              </view>
+              <view class="notice-container">
+                <view class="notice-content">
+                  <text>系统通知： xx功能今天上线了</text>
+                </view>
+                <view class="date">2017.7.15 8:21</view>
+              </view>
+            </view>
+            <text class="bottom-text">没有更多内容了</text>
+          </scroll-view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- tab panel end -->
+</view>
